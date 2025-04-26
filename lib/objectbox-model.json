@@ -1,0 +1,124 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:8090015368424347737",
+      "lastPropertyId": "11:3584686536999183356",
+      "name": "Confeitaria",
+      "properties": [
+        {
+          "id": "1:3705971695738329843",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6918548082578590992",
+          "name": "nome",
+          "type": 9
+        },
+        {
+          "id": "3:4034517056831969425",
+          "name": "telefone",
+          "type": 9
+        },
+        {
+          "id": "4:4053733703762005973",
+          "name": "cep",
+          "type": 9
+        },
+        {
+          "id": "5:7870764373504976175",
+          "name": "rua",
+          "type": 9
+        },
+        {
+          "id": "6:2134758893845926071",
+          "name": "numero",
+          "type": 9
+        },
+        {
+          "id": "7:559159511697327772",
+          "name": "bairro",
+          "type": 9
+        },
+        {
+          "id": "8:238481950812414442",
+          "name": "cidade",
+          "type": 9
+        },
+        {
+          "id": "9:2221742568803308787",
+          "name": "estado",
+          "type": 9
+        },
+        {
+          "id": "10:1957201423880023647",
+          "name": "latitude",
+          "type": 8
+        },
+        {
+          "id": "11:3584686536999183356",
+          "name": "longitude",
+          "type": 8
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:3054078692452058754",
+      "lastPropertyId": "6:1446312968889838191",
+      "name": "Produto",
+      "properties": [
+        {
+          "id": "1:8082923295366143456",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1514747072578815911",
+          "name": "nome",
+          "type": 9
+        },
+        {
+          "id": "3:367428124142507889",
+          "name": "descricao",
+          "type": 9
+        },
+        {
+          "id": "4:2746778095812500198",
+          "name": "valor",
+          "type": 8
+        },
+        {
+          "id": "5:4632404198868097861",
+          "name": "imagens",
+          "type": 9
+        },
+        {
+          "id": "6:1446312968889838191",
+          "name": "confeitariaId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:7560293169363909633",
+          "relationTarget": "Confeitaria"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:3054078692452058754",
+  "lastIndexId": "1:7560293169363909633",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
