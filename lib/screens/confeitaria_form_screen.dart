@@ -1,12 +1,15 @@
 import 'dart:convert';
+// ignore: unused_import
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:confeitaria_marketplace/models/confeitaria.dart';
 import 'package:confeitaria_marketplace/main.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
+// ignore: unused_import
 import 'package:path/path.dart' as path;
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+
+
 
 class ConfeitariaFormScreen extends StatefulWidget {
   const ConfeitariaFormScreen({super.key});
@@ -146,10 +149,24 @@ class _ConfeitariaFormScreenState extends State<ConfeitariaFormScreen> {
               TextFormField(
                 controller: telefoneController,
                 decoration: InputDecoration(labelText: 'Telefone'),
+                keyboardType: TextInputType.phone,
+                inputFormatters: [PhoneInputFormatter()],
+                validator: (value) {
+                  if (value == null || value.isEmpty) return 'Campo obrigatório';
+                  if (value.length < 14) return 'Telefone inválido';
+                  return null;
+                },
               ),
               TextFormField(
                 controller: cepController,
                 decoration: InputDecoration(labelText: 'CEP'),
+                keyboardType: TextInputType.number,
+                inputFormatters: [MaskedInputFormatter('#####-###')],
+                validator: (value) {
+                  if (value == null || value.isEmpty) return 'Campo obrigatório';
+                  if (value.length < 9) return 'CEP inválido';
+                  return null;
+                },
               ),
               SizedBox(height: 8),
               ElevatedButton.icon(

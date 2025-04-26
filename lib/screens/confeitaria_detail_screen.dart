@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:confeitaria_marketplace/models/confeitaria.dart';
 import 'package:confeitaria_marketplace/models/produto.dart';
 import 'package:confeitaria_marketplace/screens/produto_form_screen.dart';
+import 'package:confeitaria_marketplace/screens/produto_detail_screen.dart';
 import 'package:confeitaria_marketplace/main.dart';
 
 class ConfeitariaDetailScreen extends StatefulWidget {
@@ -125,6 +126,14 @@ class _ConfeitariaDetailScreenState extends State<ConfeitariaDetailScreen> {
                             title: Text(produto.nome),
                             subtitle: Text(produto.descricao),
                             trailing: Text('R\$ ${produto.valor.toStringAsFixed(2)}'),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ProdutoDetailScreen(produto: produto),
+                                ),
+                              ).then((_) => _carregarProdutos());
+                            },
                           ),
                         );
                       },

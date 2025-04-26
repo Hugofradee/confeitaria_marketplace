@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:confeitaria_marketplace/models/confeitaria.dart';
-import 'package:confeitaria_marketplace/models/produto.dart';
-import 'package:confeitaria_marketplace/objectbox.g.dart';
 import 'package:confeitaria_marketplace/objectbox_store.dart';
 import 'package:confeitaria_marketplace/screens/home_screen.dart';
 import 'package:confeitaria_marketplace/screens/confeitaria_form_screen.dart';
-import 'package:confeitaria_marketplace/screens/confeitaria_detail_screen.dart';
-import 'package:confeitaria_marketplace/screens/produto_form_screen.dart';
+// ignore: unused_import
+import 'package:confeitaria_marketplace/screens/produto_detail_screen.dart';
 
 
 late final ObjectBoxStore objectbox;
@@ -19,7 +15,6 @@ void main() async {
 
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -34,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-       '/': (context) => HomeScreen(),                      // Tela inicial com mapa + lista
+        '/': (context) => HomeScreen(),                      // Tela inicial com mapa + lista
         '/confeitaria-form': (context) => ConfeitariaFormScreen(), // Cadastro/edição
       },
     );

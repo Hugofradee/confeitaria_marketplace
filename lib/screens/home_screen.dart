@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:confeitaria_marketplace/models/confeitaria.dart';
 import 'package:confeitaria_marketplace/main.dart';
 import 'package:confeitaria_marketplace/screens/confeitaria_form_screen.dart';
 import 'package:confeitaria_marketplace/screens/confeitaria_detail_screen.dart';
@@ -13,9 +12,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // ignore: unused_field
   late GoogleMapController _mapController;
   Set<Marker> _marcadores = {};
-  LatLng _pontoInicial = LatLng(-23.5505, -46.6333); // São Paulo
+  LatLng _pontoInicial = LatLng(-7.11532, -34.861); // João Pessoa
 
   @override
   void initState() {
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (_) => ConfeitariaDetailScreen(confeitaria: confeitaria),
               ),
             );
-            _carregarConfeitariasNoMapa(); // <- Atualiza o mapa ao voltar da tela de detalhes
+            _carregarConfeitariasNoMapa(); // Atualiza o mapa ao voltar da tela de detalhes
           },
         ),
       );
@@ -54,7 +54,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Confeitarias no Mapa')),
+      appBar: AppBar(
+        title: Text('Confeitarias no Mapa'),
+        backgroundColor: const Color.fromARGB(255, 95, 84, 113),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            tooltip: 'Nova Confeitaria',
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ConfeitariaFormScreen()),
+              );
+              _carregarConfeitariasNoMapa(); // Recarrega após novo cadastro
+            },
+          ),
+        ],
+      ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
           target: _pontoInicial,
@@ -66,17 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
         markers: _marcadores,
         myLocationEnabled: true,
         myLocationButtonEnabled: true,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ConfeitariaFormScreen()),
-          );
-          _carregarConfeitariasNoMapa(); // Recarrega após novo cadastro
-        },
-        child: Icon(Icons.add),
-        tooltip: 'Nova Confeitaria',
       ),
     );
   }
