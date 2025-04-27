@@ -19,24 +19,12 @@
         git clone https://github.com/seu-usuario/seu-repositorio.git
         cd seu-repositorio
     2. Instalar as dependências
-        bash
-        Copiar
-        Editar
         flutter pub get
     3. Gerar o código do ObjectBox
-        bash
-        Copiar
-        Editar
         flutter pub run build_runner build
         - Se der conflito de arquivos, roda:
-        bash
-        Copiar
-        Editar
         flutter pub run build_runner build --delete-conflicting-outputs
     4. Rodar o app
-        bash
-        Copiar
-        Editar
         flutter run
 
 ->  Algumas configurações:
@@ -44,14 +32,11 @@
     Android
 
     - No arquivo AndroidManifest.xml, eu adicionei essas permissões:
-
-       
         <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     - Também coloquei minha chave da API do Google Maps:
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="SUA_CHAVE_AQUI"/>
@@ -59,7 +44,6 @@
     iOS
 
     - No Info.plist adicionei:
-
         <key>NSLocationWhenInUseUsageDescription</key>
         <string>O app precisa acessar sua localização para mostrar as confeitarias no mapa.</string>
         <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
