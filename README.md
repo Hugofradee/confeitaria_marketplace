@@ -16,9 +16,6 @@
 -> Como rodar o projeto:
 
     1. Clonar o repositório
-        bash
-        Copiar
-        Editar
         git clone https://github.com/seu-usuario/seu-repositorio.git
         cd seu-repositorio
     2. Instalar as dependências
