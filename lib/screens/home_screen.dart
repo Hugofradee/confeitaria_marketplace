@@ -56,7 +56,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Confeitarias no Mapa'),
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 18
+        ),
         backgroundColor: const Color.fromARGB(255, 95, 84, 113),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.add),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 // ignore: unused_import
 import 'dart:io';
+import 'package:confeitaria_marketplace/screens/produto_form_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:confeitaria_marketplace/models/confeitaria.dart';
 import 'package:confeitaria_marketplace/main.dart';
@@ -10,9 +11,10 @@ import 'package:path/path.dart' as path;
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 
-
 class ConfeitariaFormScreen extends StatefulWidget {
-  const ConfeitariaFormScreen({super.key});
+  final Confeitaria? confeitariaExistente;
+
+  const ConfeitariaFormScreen({Key? key, this.confeitariaExistente}) : super(key: key);
 
   @override
   State<ConfeitariaFormScreen> createState() => _ConfeitariaFormScreenState();
@@ -34,28 +36,67 @@ class _ConfeitariaFormScreenState extends State<ConfeitariaFormScreen> {
 
   final String googleApiKey = 'AIzaSyDV995FdwdoxaCiayE__Ym3cZePyhWBd6k';
 
+  @override
+  void initState() {
+    super.initState();
+    if (widget.confeitariaExistente != null) {
+      final confeitaria = widget.confeitariaExistente!;
+      nomeController.text = confeitaria.nome;
+      telefoneController.text = confeitaria.telefone;
+      cepController.text = confeitaria.cep;
+      ruaController.text = confeitaria.rua;
+      numeroController.text = confeitaria.numero;
+      bairroController.text = confeitaria.bairro;
+      cidadeController.text = confeitaria.cidade;
+      estadoController.text = confeitaria.estado;
+      latitudeController.text = confeitaria.latitude.toString();
+      longitudeController.text = confeitaria.longitude.toString();
+    }
+  }
+
   void _salvarConfeitaria() {
     if (_formKey.currentState!.validate()) {
-      final novaConfeitaria = Confeitaria(
-        nome: nomeController.text,
-        telefone: telefoneController.text,
-        cep: cepController.text,
-        rua: ruaController.text,
-        numero: numeroController.text,
-        bairro: bairroController.text,
-        cidade: cidadeController.text,
-        estado: estadoController.text,
-        latitude: double.tryParse(latitudeController.text) ?? 0.0,
-        longitude: double.tryParse(longitudeController.text) ?? 0.0,
+      final confeitaria = widget.confeitariaExistente ?? Confeitaria(
+        nome: '',
+        telefone: '',
+        cep: '',
+        rua: '',
+        numero: '', // <-- Agora adicionamos o numero aqui
+        bairro: '',
+        cidade: '',
+        estado: '',
+        latitude: 0.0,
+        longitude: 0.0,
       );
+      confeitaria.nome = nomeController.text;
+      confeitaria.telefone = telefoneController.text;
+      confeitaria.cep = cepController.text;
+      confeitaria.rua = ruaController.text;
+      confeitaria.numero = numeroController.text;
+      confeitaria.bairro = bairroController.text;
+      confeitaria.cidade = cidadeController.text;
+      confeitaria.estado = estadoController.text;
+      confeitaria.latitude = double.tryParse(latitudeController.text) ?? 0.0;
+      confeitaria.longitude = double.tryParse(longitudeController.text) ?? 0.0;
 
-      objectbox.confeitariaBox.put(novaConfeitaria);
+      objectbox.confeitariaBox.put(confeitaria);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Confeitaria salva com sucesso!')),
       );
 
-      Navigator.pop(context);
+      if (widget.confeitariaExistente == null) {
+        // Se for edição, redireciona para criar Produto
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProdutoFormScreen(confeitaria: confeitaria),
+          ),
+        );
+      } else {
+        // Se for cadastro novo, apenas fecha
+        Navigator.pop(context);
+      }
     }
   }
 
@@ -150,7 +191,9 @@ class _ConfeitariaFormScreenState extends State<ConfeitariaFormScreen> {
                 controller: telefoneController,
                 decoration: InputDecoration(labelText: 'Telefone'),
                 keyboardType: TextInputType.phone,
-                inputFormatters: [PhoneInputFormatter()],
+                inputFormatters: [
+                  MaskedInputFormatter('(##) #####-####'),
+                ],
                 validator: (value) {
                   if (value == null || value.isEmpty) return 'Campo obrigatório';
                   if (value.length < 14) return 'Telefone inválido';

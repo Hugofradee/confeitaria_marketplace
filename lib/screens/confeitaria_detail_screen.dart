@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:confeitaria_marketplace/screens/confeitaria_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:confeitaria_marketplace/models/confeitaria.dart';
 import 'package:confeitaria_marketplace/models/produto.dart';
@@ -23,6 +24,7 @@ class _ConfeitariaDetailScreenState extends State<ConfeitariaDetailScreen> {
   void initState() {
     super.initState();
     _carregarProdutos();
+    
   }
 
   void _carregarProdutos() {
@@ -68,6 +70,22 @@ class _ConfeitariaDetailScreenState extends State<ConfeitariaDetailScreen> {
     );
   }
 
+  void _editarConfeitaria() {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => ConfeitariaFormScreen(
+        confeitariaExistente: widget.confeitaria,
+      ),
+    ),
+  ).then((_) {
+    setState(() {
+      _carregarProdutos(); // Atualiza a tela depois de editar
+    });
+  });
+}
+
+
   @override
   Widget build(BuildContext context) {
     final confeitaria = widget.confeitaria;
@@ -75,7 +93,20 @@ class _ConfeitariaDetailScreenState extends State<ConfeitariaDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(confeitaria.nome),
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 18
+        ),
+        backgroundColor: const Color.fromARGB(255, 95, 84, 113),
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
         actions: [
+          IconButton(
+          icon: Icon(Icons.edit), // Ícone de edição
+          tooltip: 'Editar Confeitaria',
+          onPressed: _editarConfeitaria, // Função de editar
+        ),
           IconButton(
             icon: Icon(Icons.delete),
             onPressed: _confirmarExclusao,
@@ -88,7 +119,7 @@ class _ConfeitariaDetailScreenState extends State<ConfeitariaDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Endereço: ${confeitaria.rua}, ${confeitaria.numero}, ${confeitaria.bairro}', style: TextStyle(fontSize: 16)),
-            Text('Cidade: ${confeitaria.cidade} - ${confeitaria.estado}', style: TextStyle(fontSize: 16)),
+            Text('Cidade: ${confeitaria.cidade} - ${confeitaria.estado} - ${confeitaria.cep}', style: TextStyle(fontSize: 16)),
             Text('Telefone: ${confeitaria.telefone}', style: TextStyle(fontSize: 16)),
             Text('Localização: ${confeitaria.latitude}, ${confeitaria.longitude}', style: TextStyle(fontSize: 16)),
             SizedBox(height: 20),

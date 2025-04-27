@@ -96,7 +96,8 @@ class _ProdutoFormScreenState extends State<ProdutoFormScreen> {
     final titulo = widget.produtoExistente != null ? 'Editar Produto' : 'Novo Produto';
 
     return Scaffold(
-      appBar: AppBar(title: Text(titulo)),
+      appBar: AppBar(
+        title: Text(titulo)),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
