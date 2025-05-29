@@ -15,8 +15,8 @@ class Confeitaria {
   double latitude;
   double longitude;
 
-@Backlink('confeitaria')
-final ToMany<Produto> produtos = ToMany<Produto>();
+  @Backlink('confeitaria')
+  final ToMany<Produto> produtos = ToMany<Produto>();
 
   Confeitaria({
     this.id = 0,
