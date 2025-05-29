@@ -1,8 +1,8 @@
+import 'package:confeitaria_marketplace/features/confeitaria/view/confeitaria_detail_screen.dart';
+import 'package:confeitaria_marketplace/features/confeitaria/view/confeitaria_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:confeitaria_marketplace/main.dart';
-import 'package:confeitaria_marketplace/screens/confeitaria_form_screen.dart';
-import 'package:confeitaria_marketplace/screens/confeitaria_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

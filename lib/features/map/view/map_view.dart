@@ -1,11 +1,12 @@
 import 'dart:async';
 
+import 'package:confeitaria_marketplace/features/confeitaria/view/confeitaria_detail_screen.dart';
+import 'package:confeitaria_marketplace/features/confeitaria/view/confeitaria_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../screens/confeitaria_detail_screen.dart';
-import '../../../screens/confeitaria_form_screen.dart';
+
 import '../bloc/map_bloc.dart';
 
 class MapView extends StatefulWidget {

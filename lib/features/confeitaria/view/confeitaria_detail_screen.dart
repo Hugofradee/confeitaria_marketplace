@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:confeitaria_marketplace/screens/confeitaria_form_screen.dart';
+import 'package:confeitaria_marketplace/features/confeitaria/view/confeitaria_form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:confeitaria_marketplace/models/confeitaria.dart';
 import 'package:confeitaria_marketplace/models/produto.dart';
@@ -178,17 +178,7 @@ class _ConfeitariaDetailScreenState extends State<ConfeitariaDetailScreen> {
                               trailing: Text(
                                 'R\$ ${produto.valor.toStringAsFixed(2)}',
                               ),
-                              onTap: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder:
-                                //         (_) => ProdutoDetailScreen(
-                                //           produto: produto,
-                                //         ),
-                                //   ),
-                                // ).then((_) => _carregarProdutos());
-                              },
+                              onTap: () {},
                             ),
                           );
                         },

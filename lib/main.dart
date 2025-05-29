@@ -1,5 +1,5 @@
+import 'package:confeitaria_marketplace/features/confeitaria/view/confeitaria_form_screen.dart';
 import 'package:confeitaria_marketplace/objectbox_store.dart';
-import 'package:confeitaria_marketplace/screens/confeitaria_form_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'features/map/view/map_page.dart';
