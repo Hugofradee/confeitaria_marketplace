@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:confeitaria_marketplace/objectbox_store.dart';
-import 'package:confeitaria_marketplace/screens/home_screen.dart';
 import 'package:confeitaria_marketplace/screens/confeitaria_form_screen.dart';
-// ignore: unused_import
-import 'package:confeitaria_marketplace/screens/produto_detail_screen.dart';
+import 'package:flutter/material.dart';
 
+import 'features/map/view/map_page.dart';
 
 late final ObjectBoxStore objectbox;
 
@@ -24,13 +22,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Confeitaria Marketplace',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-      ),
+      theme: ThemeData(primarySwatch: Colors.pink),
       initialRoute: '/',
       routes: {
-        '/': (context) => HomeScreen(),                      // Tela inicial com mapa + lista
-        '/confeitaria-form': (context) => ConfeitariaFormScreen(), // Cadastro/edição
+        '/': (context) => MapPage(), // Tela inicial com mapa + lista
+        '/confeitaria-form':
+            (context) => ConfeitariaFormScreen(), // Cadastro/edição
       },
     );
   }
